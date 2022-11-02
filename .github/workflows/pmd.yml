@@ -41,3 +41,6 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: pmd-report.sarif
+      - name: Fail build if there a violations
+        if: steps.pmd.outputs.violations != 0
+        run: exit 1
